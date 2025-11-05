@@ -4,6 +4,9 @@ public class MovieData {
 
     public static ArrayList<Movie> hentMovieListe() {
         ArrayList<Movie> movieListe = new ArrayList<>();
+                    /*
+                    Title - Årstal - Genre - Rating
+                     */
 
         movieListe.add(new Movie("The Godfather", 1972, "Crime, Drama", 9.2));
         movieListe.add(new Movie("The Shawshank Redemption", 1994, "Drama", 9.3));

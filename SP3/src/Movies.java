@@ -9,7 +9,8 @@ public class DataHandler {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("filmdata_SP3.txt"));
             String linje;
-
+/* Filen bliver indlæst fra TXT fil mappen
+ */
             while ((linje = reader.readLine()) != null) {
                 // Splitter linjen på semikolon
                 String[] data = linje.split(";");
