@@ -7,7 +7,6 @@ public class Series extends Media {
     private double rating;
     private ArrayList<Seasons> seasons;
 
-
     public Series(String title, int year, String category, double rating) {
         super(title, year, category, rating);
         this.seasons = new ArrayList<>();
