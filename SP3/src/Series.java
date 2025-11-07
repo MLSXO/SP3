@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
 public class Series extends Media {
+    private String title;
+    private int year;
+    private String category;
+    private double rating;
     private ArrayList<Seasons> seasons;
 
     public Series(String title, int year, String category, double rating) {
@@ -25,7 +29,7 @@ public class Series extends Media {
 
     @Override
     public String getInfo() {
-        return "Serie: " + getTitle() + " (" + getYear() + ") - " + getCategory() +
-                " | Rating: " + getRating() + " | Sæsoner: " + getNumberOfSeasons();
+        return "Serie: " + title + " (" + year + ") - " + category +
+                " | Rating: " + rating + " | Sæsoner: " + getNumberOfSeasons();
     }
 }
