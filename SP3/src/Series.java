@@ -1,27 +1,20 @@
 import java.util.ArrayList;
 
 public class Series extends Media {
-    private String title;
-    private int year;
-    private String category;
-    private double rating;
-    private ArrayList<Seasons> seasons;
+    private ArrayList<Season> seasons;
 
     public Series(String title, int year, String category, double rating) {
         super(title, year, category, rating);
         this.seasons = new ArrayList<>();
     }
 
-
-    public void addSeason(Seasons season) {
+    public void addSeason(Season season) {
         seasons.add(season);
     }
 
-
-    public ArrayList<Seasons> getSeasons() {
+    public ArrayList<Season> getSeasons() {
         return seasons;
     }
-
 
     public int getNumberOfSeasons() {
         return seasons.size();
@@ -29,7 +22,7 @@ public class Series extends Media {
 
     @Override
     public String getInfo() {
-        return "Serie: " + title + " (" + year + ") - " + category +
-                " | Rating: " + rating + " | Sæsoner: " + getNumberOfSeasons();
+        return "Serie: " + getTitle() + " (" + getYear() + ") - " + getCategory() +
+                " | Rating: " + getRating() + " | Sæsoner: " + getNumberOfSeasons();
     }
 }
