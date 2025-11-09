@@ -75,7 +75,7 @@ public class User {
         for (User u : users) {
             if (u.getUsername().equalsIgnoreCase(username)
                     && u.getPassword().equals(password)) {
-                System.out.println("Logget ind som: " + username);
+                System.out.println("Logget ind som: " + username + ". Velkommen tilbage");
                 return u;
             }
         }

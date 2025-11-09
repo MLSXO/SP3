@@ -16,9 +16,9 @@ public class MenuSystem {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1": {
-                    MovieReader reader = new MovieReader();       // opret reader-objekt
-                    reader.loadMovies("MovieData.csv");           // load movies til reader
-                    List<Movie> movies = reader.getAllMovies();   // hent listen fra reader
+                    MovieReader reader = new MovieReader();       // opretter reader-objekt
+                    reader.loadMovies("MovieData.csv");           // loader movies til reader
+                    List<Movie> movies = reader.getAllMovies();   // henter listen fra reader
 
                     System.out.println("Film Bibliotek:");
                     int i = 1;

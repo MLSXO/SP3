@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Series extends Media {
     private ArrayList<Season> seasons;
 
-    public Series(String title, int year, String category, double rating) {
-        super(title, year, category, rating);
+    public Series(String title, int date, String category, double rating) {
+        super(title, date, category, rating);
         this.seasons = new ArrayList<>();
     }
 
@@ -22,7 +22,7 @@ public class Series extends Media {
 
     @Override
     public String getInfo() {
-        return "Serie: " + getTitle() + " (" + getYear() + ") - " + getCategory() +
+        return "Serie: " + getTitle() + " (" + getDate() + ") - " + getCategory() +
                 " | Rating: " + getRating() + " | Sæsoner: " + getNumberOfSeasons();
     }
 }
