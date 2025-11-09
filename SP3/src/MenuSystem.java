@@ -1,2 +1,80 @@
+import java.util.List;
+import java.util.Scanner;
+
 public class MenuSystem {
+
+    public static void option() {
+        boolean option = true;
+        Scanner scanner = new Scanner(System.in);
+        while (option) {
+            System.out.println("\n=== Menu ===");
+            System.out.println("1) Movies");
+            System.out.println("2) Series");
+            System.out.println("0) Afslut");
+            System.out.print("Vælg: ");
+
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1": {
+                    MovieReader reader = new MovieReader();       // opret reader-objekt
+                    reader.loadMovies("MovieData.csv");           // load movies til reader
+                    List<Movie> movies = reader.getAllMovies();   // hent listen fra reader
+
+                    System.out.println("Film Bibliotek:");
+                    int i = 1;
+                    for (Movie m : movies) {
+                        System.out.print(i + " ");
+                        System.out.println(m.getInfo());
+                        i++;
+                    }
+
+                    MovieOption(reader); //kalder på MovieOption
+
+                    option = false;
+                    break;
+                }
+                case "2": {
+                    // printer alle series ud
+                    List<Series> seriesListe = SeriesData.hentSerieListe();
+                    System.out.println("\nSerie Bibliotek:");
+                    int i = 1;
+                    for (Series s : seriesListe) {
+                        System.out.print(i + " ");
+                        System.out.println(s.getInfo());
+                        i++;
+                    }
+                    option = false;
+                    break;
+
+                }
+                case "0": {
+                    System.out.println("Farvel!");
+                    System.exit(0);
+
+                }
+            }
+        }
+    }
+
+    public static void MovieOption(MovieReader reader) {
+        Scanner scanner = new Scanner(System.in);
+        boolean MovieOption = true;
+        while (MovieOption){
+            System.out.println("\n=== Movie Option ===");
+            System.out.println("type the number from the list you wonna see?");
+            System.out.print("Vælg: ");
+
+            String input = scanner.nextLine();
+
+            int movieNumber = Integer.parseInt(input) - 1; //-1 fordi index starter med 0
+            Movie movie = reader.getMovie(movieNumber);
+            System.out.println("\n=== Movie Details ===");
+            System.out.println(movie.getInfo());
+            System.out.println(movie.getTitle() + " is playing now...");
+            System.exit(0);
+
+        }
+    }
+
+
 }

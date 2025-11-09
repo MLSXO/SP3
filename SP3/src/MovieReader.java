@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MovieReader {
-    public static List<Movie> loadMovies(String filePath) {
-        List<Movie> movieList = new ArrayList<>();
 
+    private List<Movie> movieList = new ArrayList<>();
+
+    // Load movies fra fil og gem i feltet movieList
+    public void loadMovies(String filePath) {
         try (Scanner scanner = new Scanner(new File(filePath))) {
             if (scanner.hasNextLine()) scanner.nextLine(); // skip header
 
@@ -29,7 +31,16 @@ public class MovieReader {
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filePath);
         }
+    }
 
+    // Hent film ud fra nummer (indeks i listen)
+
+    public List<Movie> getAllMovies() {
         return movieList;
     }
+
+    public Movie getMovie(int number) { //Her henter den, den film du vælger, når den spørg dig hvilken film du gerne vil se
+        return movieList.get(number);
+    }
+
 }

@@ -38,9 +38,14 @@ public class User {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue; //Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
+
                 String[] parts = line.split(";");
                 if (parts.length == 2) {
-                    users.add(new User(parts[0], parts[1]));
+                    String username = parts[0].trim();
+                    String password = parts[1].trim();
+                    users.add(new User(username, password));
                 }
             }
         } catch (IOException e) {
