@@ -1,0 +1,39 @@
+@startuml
+usecase "Login" as UC1
+usecase "Register new user" as UC2
+usecase "User accounts" as UC3
+usecase "Library" as UC4
+usecase "Series" as UC5
+usecase "Movies" as UC6
+
+usecase "Genre" as UC7
+usecase "Seasons" as UC8
+usecase "Episode" as UC9
+usecase "Search" as UC10
+
+usecase "Live show" as UC11
+
+
+
+User --> UC1
+UC1 --> UC2
+UC1 --> UC3
+
+UC2 --> UC4
+UC3 --> UC4
+
+UC4 --> UC5
+UC4 --> UC6
+UC4 --> UC11
+UC4 --> UC10
+UC5 --> UC7
+UC6 --> UC7
+
+UC5 --> UC8
+UC8 --> UC9
+
+
+
+
+
+@enduml
