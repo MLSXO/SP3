@@ -1,1 +1,94 @@
-kl
+@startuml
+'Streaming UML diagram
+
+class Main {
+    + main(args : String[])
+    Login.showLoginMenu();
+    MenuSystem.option();
+}
+
+class Login {
+    + showLoginMenu() : User
+}
+
+class User {
+    - username : String
+    - password : String
+    + getUsername() : String
+    + getPassword() : String
+    + static loadUsers() : List<User>
+    + static saveUsers(users : List<User>)
+    + static login(users : List<User>, scanner : Scanner) : User
+    + static createUser(users : List<User>, scanner : Scanner)
+}
+
+class MenuSystem {
+    + option()
+    + MovieOption(reader : MovieReader)
+}
+
+abstract class Media {
+    - title : String
+    - date : int
+    - category : String
+    - rating : double
+    + getTitle() : String
+    + getDate() : int
+    + getCategory() : String
+    + getRating() : double
+    + getInfo() : String
+}
+
+class MovieReader {
+    - movieList : List<Movie>
+    + loadMovies(filePath : String)
+    + getAllMovies() : List<Movie>
+    + getMovie(number : int) : Movie
+}
+
+class Movie {
+    - genres : List<String>
+    + Movie(title : String, date : int, genres : List<String>, rating : double)
+    + getGenres() : List<String>
+    + getInfo() : String
+}
+
+class Series {
+    - seasons : ArrayList<Season>
+    + Series(title : String, date : int, category : String, rating : double)
+    + addSeason(season : Season)
+    + getSeasons() : ArrayList<Season>
+    + getNumberOfSeasons() : int
+    + getInfo() : String
+}
+
+class Season {
+    - number : int
+    - episodes : int
+    + Season(number : int, episodes : int)
+    + getNumber() : int
+    + getEpisodes() : int
+    + toString() : String
+}
+
+class SeriesData {
+    + hentSerieListe() : ArrayList<Series>
+}
+
+class MediaPlayer {
+}
+
+'Her har vi movie og series der arver
+Movie --> Media
+Series --> Media
+
+'De indenholder forskellige klasser
+MovieReader --> Movie : "Indenholder"
+Series --> Season : "Indenholder"
+Season --> Episode : "indenholder"
+
+Main --> Login
+Main --> MenuSystem
+Login --> User
+
+@enduml
