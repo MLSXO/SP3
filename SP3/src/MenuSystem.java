@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,6 +77,25 @@ public class MenuSystem {
             System.exit(0);
 
         }
+    }
+    public static void saveMovies(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n=== Wanna save this to favorite movies? ===");
+        System.out.println("Y/N?");
+        System.out.print("Vælg: ");
+
+        String input = scanner.nextLine();
+        int movieNumber = Integer.parseInt(input) - 1; //-1 fordi index starter med 0
+
+        try (PrintWriter pw = new PrintWriter(new FileWriter(User.FILE_NAME))) {
+            for (Movie u : movies) {
+                pw.println(u.getUsername() + ";" + u.getPassword() + ";" +
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl ved oprettelse af brugere: " + e.getMessage());
+        }
+
     }
 
 
