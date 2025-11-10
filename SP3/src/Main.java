@@ -4,8 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Login.showLoginMenu(); //Her starter login programmet
-        MenuSystem.option(); // Her vises Menu Systemet
+        //Her starter login programmet
+        User currentUser = Login.showLoginMenu();
+        MenuSystem.option(currentUser); // Her vises Menu Systemet
 
     }
 }

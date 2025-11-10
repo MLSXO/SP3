@@ -1,3 +1,4 @@
+
 @startuml
 usecase "Login" as UC1
 usecase "Register new user" as UC2
@@ -31,8 +32,6 @@ UC6 --> UC7
 
 UC5 --> UC8
 UC8 --> UC9
-
-
 
 
 

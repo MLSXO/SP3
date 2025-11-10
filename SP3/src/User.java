@@ -7,7 +7,7 @@ public class User {
     private String username;
     private String password;
 
-    private static final String FILE_NAME = "users.txt";
+    public static final String FILE_NAME = "users.txt";
 
     public User(String username, String password) {
         this.username = username;
@@ -30,6 +30,7 @@ public class User {
         List<User> users = new ArrayList<>();
         File file = new File(FILE_NAME);
 
+
         if (!file.exists()) {
             System.out.println("Ingen brugerfil fundet. Starter med tom liste.");
             return users;
@@ -42,7 +43,7 @@ public class User {
                 if (line.isEmpty()) continue; //Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
 
                 String[] parts = line.split(";");
-                if (parts.length == 2) {
+                if (parts.length >= 2) {
                     String username = parts[0].trim();
                     String password = parts[1].trim();
                     users.add(new User(username, password));
@@ -101,6 +102,56 @@ public class User {
         users.add(new User(username, password));
         saveUsers(users);
         System.out.println("Bruger oprettet!");
+
+    }
+
+    public static void saveFavoriteMovie(User currentUser, String movieTitle) {
+        File file = new File(FILE_NAME);
+        List<String> updatedLines = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(";");
+                if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
+                    // Tilføj film til brugerens linje
+                    line += ";" + movieTitle;
+                }
+                updatedLines.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl ved læsning: " + e.getMessage());
+        }
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
+            for (String updatedLine : updatedLines) {
+                pw.println(updatedLine);
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl ved skrivning: " + e.getMessage());
+        }
+
+        System.out.println(movieTitle + " er gemt som favorit for " + currentUser.getUsername());
+    }
+
+    public List<String> getFavoriteMovies() {
+        List<String> favs = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(FILE_NAME))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                if (line.isEmpty()) continue;
+
+                String[] parts = line.split(";");
+                if (parts[0].equalsIgnoreCase(this.username)) {
+                    for (int i = 2; i < parts.length; i++) { //i er blevet instanseret til 2, da idex 0 indeholder brugernavn og 1 med adgagnskode
+                        favs.add(parts[i]);
+                    }
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
+        return favs;
     }
 }
 

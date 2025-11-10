@@ -16,4 +16,5 @@ public class Movie extends Media {
     public String getInfo() {
         return getTitle() + " (" + getDate() + ") - Genres: " + genres + " - Rating: " + getRating();
     }
+
 }

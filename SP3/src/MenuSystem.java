@@ -6,13 +6,14 @@ import java.util.Scanner;
 
 public class MenuSystem {
 
-    public static void option() {
+    public static void option(User currentUser) {
         boolean option = true;
         Scanner scanner = new Scanner(System.in);
         while (option) {
             System.out.println("\n=== Menu ===");
             System.out.println("1) Movies");
             System.out.println("2) Series");
+            System.out.println("4) Favorites");
             System.out.println("0) Afslut");
             System.out.print("Vælg: ");
 
@@ -31,7 +32,7 @@ public class MenuSystem {
                         i++;
                     }
 
-                    MovieOption(reader); //kalder på MovieOption
+                    MovieOption(reader, currentUser); //kalder på MovieOption
 
                     option = false;
                     break;
@@ -50,6 +51,16 @@ public class MenuSystem {
                     break;
 
                 }
+                case "4": {
+                    List<String> favs = currentUser.getFavoriteMovies();
+                    System.out.println("Dine favoritfilm:");
+                    for (String f : favs) {
+                        System.out.println("- " + f);
+                    }
+                    break;
+
+
+                }
                 case "0": {
                     System.out.println("Farvel!");
                     System.exit(0);
@@ -59,10 +70,10 @@ public class MenuSystem {
         }
     }
 
-    public static void MovieOption(MovieReader reader) {
+    public static void MovieOption(MovieReader reader, User currentUser) {
         Scanner scanner = new Scanner(System.in);
         boolean MovieOption = true;
-        while (MovieOption){
+        while (MovieOption) {
             System.out.println("\n=== Movie Option ===");
             System.out.println("type the number from the list you wonna see?");
             System.out.print("Vælg: ");
@@ -74,11 +85,15 @@ public class MenuSystem {
             System.out.println("\n=== Movie Details ===");
             System.out.println(movie.getInfo());
             System.out.println(movie.getTitle() + " is playing now...");
-            System.exit(0);
 
+
+            saveMoviesToFavorites(currentUser,movie);
+            System.exit(0);
         }
     }
-    public static void saveMovies(){
+
+    public static void saveMoviesToFavorites(User user, Movie movie) {
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n=== Wanna save this to favorite movies? ===");
@@ -86,17 +101,18 @@ public class MenuSystem {
         System.out.print("Vælg: ");
 
         String input = scanner.nextLine();
-        int movieNumber = Integer.parseInt(input) - 1; //-1 fordi index starter med 0
-
-        try (PrintWriter pw = new PrintWriter(new FileWriter(User.FILE_NAME))) {
-            for (Movie u : movies) {
-                pw.println(u.getUsername() + ";" + u.getPassword() + ";" +
+        switch (input) {
+            case ("Y"): {
+                User.saveFavoriteMovie(user, movie.getTitle());
+                break;
             }
-        } catch (IOException e) {
-            System.out.println("Fejl ved oprettelse af brugere: " + e.getMessage());
+
+            case ("N"): {
+                System.out.println("Fair nok");
+
+                break;
+            }
+
         }
-
     }
-
-
 }
