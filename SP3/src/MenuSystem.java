@@ -96,7 +96,6 @@ public class MenuSystem {
             System.out.println("Fejl ved oprettelse af brugere: " + e.getMessage());
         }
 
-
     }
 
 
