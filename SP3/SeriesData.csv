@@ -1,31 +1,31 @@
-Title,Year,Genre,Rating
-Breaking Bad,2008,"Crime, Drama, Thriller",9.5
-The Sopranos,1999,"Crime, Drama",9.2
-The Wire,2002,"Crime, Drama, Thriller",9.3
-Game of Thrones,2011,"Action, Adventure, Drama",9.2
-Stranger Things,2016,"Drama, Fantasy, Horror",8.7
-The Crown,2016,"Biography, Drama, History",8.6
-Sherlock,2010,"Crime, Drama, Mystery",9.1
-Friends,1994,"Comedy, Romance",8.9
-The Office,2005,"Comedy",8.9
-Better Call Saul,2015,"Crime, Drama",8.8
-True Detective,2014,"Crime, Drama, Mystery",8.9
-Fargo,2014,"Crime, Drama, Thriller",8.9
-The Walking Dead,2010,"Drama, Horror, Thriller",8.2
-House of Cards,2013,"Drama",8.7
-Mad Men,2007,"Drama",8.6
-Westworld,2016,"Drama, Mystery, Sci-Fi",8.6
-The Mandalorian,2019,"Action, Adventure, Fantasy",8.7
-Narcos,2015,"Biography, Crime, Drama",8.8
-House,2004,"Drama, Mystery",8.7
-Lost,2004,"Adventure, Drama, Fantasy",8.3
-Dexter,2006,"Crime, Drama, Mystery",8.6
-The X-Files,1993,"Drama, Mystery, Sci-Fi",8.7
-Vikings,2013,"Action, Adventure, Drama",8.5
-Peaky Blinders,2013,"Crime, Drama",8.8
-Black Mirror,2011,"Drama, Sci-Fi, Thriller",8.8
-The Witcher,2019,"Action, Adventure, Drama",8.2
-Money Heist,2017,"Action, Crime, Mystery",8.3
-Ozark,2017,"Crime, Drama, Thriller",8.4
-The Boys,2019,"Action, Comedy, Crime",8.7
-Succession,2018,"Comedy, Drama",8.8
+title,year,genre,rating
+Breaking Bad,2008,Crime;Drama;Thriller,9.5
+The Sopranos,1999,Crime;Drama,9.2
+The Wire,2002,Crime;Drama;Thriller,9.3
+Game of Thrones,2011,Action;Adventure;Drama,9.2
+Stranger Things,2016,Drama;Fantasy;Horror,8.7
+The Crown,2016,Biography;Drama;History,8.6
+Sherlock,2010,Crime;Drama;Mystery,9.1
+Friends,1994,Comedy;Romance,8.9
+The Office,2005,Comedy,8.9
+Better Call Saul,2015,Crime;Drama,8.8
+True Detective,2014,Crime;Drama;Mystery,8.9
+Fargo,2014,Crime;Drama;Thriller,8.9
+The Walking Dead,2010,Drama;Horror;Thriller,8.2
+House of Cards,2013,Drama,8.7
+Mad Men,2007,Drama,8.6
+Westworld,2016,Drama;Mystery;Sci-Fi,8.6
+The Mandalorian,2019,Action;Adventure;Fantasy,8.7
+Narcos,2015,Biography;Crime;Drama,8.8
+House,2004,Drama;Mystery,8.7
+Lost,2004,Adventure;Drama;Fantasy,8.3
+Dexter,2006,Crime;Drama;Mystery,8.6
+The X-Files,1993,Drama;Mystery;Sci-Fi,8.7
+Vikings,2013,Action;Adventure;Drama,8.5
+Peaky Blinders,2013,Crime;Drama,8.8
+Black Mirror,2011,Drama;Sci-Fi;Thriller,8.8
+The Witcher,2019,Action;Adventure;Drama,8.2
+Money Heist,2017,Action;Crime;Mystery,8.3
+Ozark,2017,Crime;Drama;Thriller,8.4
+The Boys,2019,Action;Comedy;Crime,8.7
+Succession,2018,Comedy;Drama,8.8

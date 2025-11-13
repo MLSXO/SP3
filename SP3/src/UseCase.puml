@@ -1,5 +1,6 @@
 
 @startuml
+!pragma layout smetana
 usecase "Login" as UC1
 usecase "Register new user" as UC2
 usecase "User accounts" as UC3

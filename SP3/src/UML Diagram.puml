@@ -1,4 +1,5 @@
  @startuml
+ !pragma layout smetana
 'Streaming UML diagram
 
 class Main {

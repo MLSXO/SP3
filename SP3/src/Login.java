@@ -9,10 +9,10 @@ public class Login {
 
         while (true) {
             System.out.println("\n=== LOGIN MENU ===");
-            System.out.println("1) Log ind");
-            System.out.println("2) Opret bruger");
-            System.out.println("0) Afslut");
-            System.out.print("Vælg: ");
+            System.out.println("1) Login");
+            System.out.println("2) Create User");
+            System.out.println("0) End");
+            System.out.print("Choose: ");
 
             String choice = scanner.nextLine();
 
@@ -25,10 +25,10 @@ public class Login {
                 }
                 case "2" -> User.createUser(users, scanner);
                 case "0" -> {
-                    System.out.println("Farvel!");
+                    System.out.println("Goodbye!");
                     System.exit(0);
                 }
-                default -> System.out.println("Ugyldigt valg.");
+                default -> System.out.println("Invalid selection");
             }
         }
     }

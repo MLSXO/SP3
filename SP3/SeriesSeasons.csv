@@ -1,0 +1,132 @@
+title,year,genre,rating,season,episodes
+Breaking Bad,2008,Crime;Drama;Thriller,9.5,1,7
+Breaking Bad,2008,Crime;Drama;Thriller,9.5,2,13
+Breaking Bad,2008,Crime;Drama;Thriller,9.5,3,13
+Breaking Bad,2008,Crime;Drama;Thriller,9.5,4,13
+Breaking Bad,2008,Crime;Drama;Thriller,9.5,5,16
+The Sopranos,1999,Crime;Drama,9.2,1,13
+The Sopranos,1999,Crime;Drama,9.2,2,13
+The Sopranos,1999,Crime;Drama,9.2,3,13
+The Sopranos,1999,Crime;Drama,9.2,4,13
+The Sopranos,1999,Crime;Drama,9.2,5,13
+The Sopranos,1999,Crime;Drama,9.2,6,21
+The Wire,2002,Crime;Drama;Thriller,9.3,1,13
+The Wire,2002,Crime;Drama;Thriller,9.3,2,12
+The Wire,2002,Crime;Drama;Thriller,9.3,3,12
+The Wire,2002,Crime;Drama;Thriller,9.3,4,13
+The Wire,2002,Crime;Drama;Thriller,9.3,5,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,1,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,2,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,3,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,4,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,5,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,6,10
+Game of Thrones,2011,Action;Adventure;Drama,9.2,7,7
+Game of Thrones,2011,Action;Adventure;Drama,9.2,8,6
+Stranger Things,2016,Drama;Fantasy;Horror,8.7,1,8
+Stranger Things,2016,Drama;Fantasy;Horror,8.7,2,9
+Stranger Things,2016,Drama;Fantasy;Horror,8.7,3,8
+Stranger Things,2016,Drama;Fantasy;Horror,8.7,4,9
+The Crown,2016,Biography;Drama;History,8.6,1,10
+The Crown,2016,Biography;Drama;History,8.6,2,10
+The Crown,2016,Biography;Drama;History,8.6,3,10
+The Crown,2016,Biography;Drama;History,8.6,4,10
+The Crown,2016,Biography;Drama;History,8.6,5,10
+Sherlock,2010,Crime;Drama;Mystery,9.1,1,3
+Sherlock,2010,Crime;Drama;Mystery,9.1,2,3
+Sherlock,2010,Crime;Drama;Mystery,9.1,3,3
+Friends,1994,Comedy;Romance,8.9,1,24
+Friends,1994,Comedy;Romance,8.9,2,24
+Friends,1994,Comedy;Romance,8.9,3,25
+Friends,1994,Comedy;Romance,8.9,4,24
+Friends,1994,Comedy;Romance,8.9,5,24
+Friends,1994,Comedy;Romance,8.9,6,25
+Friends,1994,Comedy;Romance,8.9,7,24
+Friends,1994,Comedy;Romance,8.9,8,24
+Friends,1994,Comedy;Romance,8.9,9,24
+Friends,1994,Comedy;Romance,8.9,10,18
+The Office,2005,Comedy,8.9,1,6
+The Office,2005,Comedy,8.9,2,22
+The Office,2005,Comedy,8.9,3,23
+The Office,2005,Comedy,8.9,4,14
+The Office,2005,Comedy,8.9,5,28
+The Office,2005,Comedy,8.9,6,26
+The Office,2005,Comedy,8.9,7,24
+The Office,2005,Comedy,8.9,8,24
+Better Call Saul,2015,Crime;Drama,8.8,1,10
+Better Call Saul,2015,Crime;Drama,8.8,2,10
+Better Call Saul,2015,Crime;Drama,8.8,3,10
+Better Call Saul,2015,Crime;Drama,8.8,4,10
+Better Call Saul,2015,Crime;Drama,8.8,5,10
+Better Call Saul,2015,Crime;Drama,8.8,6,13
+True Detective,2014,Crime;Drama;Mystery,8.9,1,8
+True Detective,2014,Crime;Drama;Mystery,8.9,2,8
+Fargo,2014,Crime;Drama;Thriller,8.9,1,10
+Fargo,2014,Crime;Drama;Thriller,8.9,2,10
+The Walking Dead,2010,Drama;Horror;Thriller,8.2,1,6
+The Walking Dead,2010,Drama;Horror;Thriller,8.2,2,13
+The Walking Dead,2010,Drama;Horror;Thriller,8.2,3,16
+House of Cards,2013,Drama,8.7,1,13
+House of Cards,2013,Drama,8.7,2,13
+House of Cards,2013,Drama,8.7,3,13
+House of Cards,2013,Drama,8.7,4,13
+Mad Men,2007,Drama,8.6,1,13
+Mad Men,2007,Drama,8.6,2,13
+Mad Men,2007,Drama,8.6,3,13
+Mad Men,2007,Drama,8.6,4,13
+Mad Men,2007,Drama,8.6,5,13
+Mad Men,2007,Drama,8.6,6,13
+Westworld,2016,Drama;Mystery;Sci-Fi,8.6,1,10
+Westworld,2016,Drama;Mystery;Sci-Fi,8.6,2,10
+Westworld,2016,Drama;Mystery;Sci-Fi,8.6,3,8
+The Mandalorian,2019,Action;Adventure;Fantasy,8.7,1,8
+The Mandalorian,2019,Action;Adventure;Fantasy,8.7,2,8
+Narcos,2015,Biography;Crime;Drama,8.8,1,10
+Narcos,2015,Biography;Crime;Drama,8.8,2,10
+Narcos,2015,Biography;Crime;Drama,8.8,3,10
+House,2004,Drama;Mystery,8.7,1,22
+House,2004,Drama;Mystery,8.7,2,24
+House,2004,Drama;Mystery,8.7,3,24
+Lost,2004,Adventure;Drama;Fantasy,8.3,1,25
+Lost,2004,Adventure;Drama;Fantasy,8.3,2,24
+Lost,2004,Adventure;Drama;Fantasy,8.3,3,23
+Lost,2004,Adventure;Drama;Fantasy,8.3,4,14
+Lost,2004,Adventure;Drama;Fantasy,8.3,5,17
+Lost,2004,Adventure;Drama;Fantasy,8.3,6,18
+Dexter,2006,Crime;Drama;Mystery,8.6,1,12
+Dexter,2006,Crime;Drama;Mystery,8.6,2,12
+Dexter,2006,Crime;Drama;Mystery,8.6,3,12
+Dexter,2006,Crime;Drama;Mystery,8.6,4,12
+Dexter,2006,Crime;Drama;Mystery,8.6,5,12
+Dexter,2006,Crime;Drama;Mystery,8.6,6,12
+Dexter,2006,Crime;Drama;Mystery,8.6,7,12
+Dexter,2006,Crime;Drama;Mystery,8.6,8,12
+The X-Files,1993,Drama;Mystery;Sci-Fi,8.7,1,24
+The X-Files,1993,Drama;Mystery;Sci-Fi,8.7,2,25
+Vikings,2013,Action;Adventure;Drama,8.5,1,9
+Vikings,2013,Action;Adventure;Drama,8.5,2,10
+Vikings,2013,Action;Adventure;Drama,8.5,3,10
+Vikings,2013,Action;Adventure;Drama,8.5,4,20
+Peaky Blinders,2013,Crime;Drama,8.8,1,6
+Peaky Blinders,2013,Crime;Drama,8.8,2,6
+Peaky Blinders,2013,Crime;Drama,8.8,3,6
+Peaky Blinders,2013,Crime;Drama,8.8,4,6
+Peaky Blinders,2013,Crime;Drama,8.8,5,6
+Peaky Blinders,2013,Crime;Drama,8.8,6,6
+Black Mirror,2011,Drama;Sci-Fi;Thriller,8.8,1,3
+Black Mirror,2011,Drama;Sci-Fi;Thriller,8.8,2,3
+Black Mirror,2011,Drama;Sci-Fi;Thriller,8.8,3,6
+The Witcher,2019,Action;Adventure;Drama,8.2,1,8
+The Witcher,2019,Action;Adventure;Drama,8.2,2,8
+Money Heist,2017,Action;Crime;Mystery,8.3,1,13
+Money Heist,2017,Action;Crime;Mystery,8.3,2,9
+Ozark,2017,Crime;Drama;Thriller,8.4,1,10
+Ozark,2017,Crime;Drama;Thriller,8.4,2,10
+Ozark,2017,Crime;Drama;Thriller,8.4,3,10
+Ozark,2017,Crime;Drama;Thriller,8.4,4,14
+The Boys,2019,Action;Comedy;Crime,8.7,1,8
+The Boys,2019,Action;Comedy;Crime,8.7,2,8
+Succession,2018,Comedy;Drama,8.8,1,10
+Succession,2018,Comedy;Drama,8.8,2,10
+Succession,2018,Comedy;Drama,8.8,3,9
+Succession,2018,Comedy;Drama,8.8,4,10

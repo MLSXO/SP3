@@ -42,7 +42,7 @@ public class User {
             while ((line = br.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty())
-                    continue; //Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
+                    continue; // Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
 
                 String[] parts = line.split(";");
                 if (parts.length >= 2) {
@@ -118,7 +118,7 @@ public class User {
                 String[] parts = line.split(";");
 
                 if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
-                    // Check if movie is already in favorites
+                    // Tjek om filmen allerede er i favoritter
                     for (int i = 2; i < parts.length; i++) {
                         if (parts[i].equals(movie.toString())) {
                             alreadyFavorite = true;
@@ -127,7 +127,7 @@ public class User {
                     }
 
                     if (!alreadyFavorite) {
-                        line += ";" + movie.toString(); // add movie only if not already there
+                        line += ";" + movie.toString(); // tilføj film kun hvis den ikke allerede er der
                     }
                 }
 
@@ -138,7 +138,7 @@ public class User {
             return;
         }
 
-        // Write back updated lines
+        // Skriv opdaterede linjer tilbage
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             for (String updatedLine : updatedLines) {
                 pw.println(updatedLine);
@@ -195,7 +195,7 @@ public class User {
                 String[] parts = line.split(";");
 
                 if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
-                    // Rebuild the line without the selected movie
+                    // Genopbyg linjen uden den valgte film
                     StringBuilder newLine = new StringBuilder(parts[0] + ";" + parts[1]);
 
                     for (int i = 2; i < parts.length; i++) {
@@ -204,7 +204,7 @@ public class User {
                             String title = movieParts[0].trim();
                             int year = Integer.parseInt(movieParts[1].trim());
 
-                            // Only keep movies that are NOT the one to remove
+                            // Behold kun film som IKKE er den der skal fjernes
                             if (!(title.equalsIgnoreCase(movieToRemove.getTitle()) && year == movieToRemove.getDate())) {
                                 newLine.append(";").append(parts[i]);
                             }
@@ -221,7 +221,7 @@ public class User {
             return;
         }
 
-        // Write changes back to the file
+        // Skriv ændringer tilbage til filen
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             for (String updatedLine : updatedLines) {
                 pw.println(updatedLine);
@@ -234,4 +234,3 @@ public class User {
         System.out.println(movieToRemove.getTitle() + " has been removed from your favorites.");
     }
 }
-

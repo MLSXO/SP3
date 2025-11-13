@@ -1,4 +1,4 @@
-Nicolai;1234
-M;M
+Nicolai;1234;The Good The Bad And The Ugly,1966,8.9,Western;The Lord Of The Rings - The Return Of The King,2003,8.9,Action, Adventure, Drama
+M;M;The Great Dictator,1940,8.5,Comedy, Drama, War;The Lord Of The Rings - The Return Of The King,2003,8.9,Action, Adventure, Drama
 Sofus;Munden;The Godfather,1972,9.2,Crime, Drama
 Emil;123
