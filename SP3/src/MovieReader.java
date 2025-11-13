@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class MovieReader {
 
     private List<Movie> movieList = new ArrayList<>();
-    private int id;
 
     // Load movies fra fil og gem i feltet movieList
     public void loadMovies(String filePath) {
