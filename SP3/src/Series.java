@@ -11,12 +11,22 @@ public class Series {
         this.rating = rating;
     }
 
-    public String getTitle() { return title; }
-    public int getYear() { return year; }
-    public String getGenre() { return genre; }
-    public double getRating() { return rating; }
+    public String getTitle() {
+        return title;
+    }
 
-    // Denne metode skal være til stede
+    public int getYear() {
+        return year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
     public String getInfo() {
         return title + " (" + year + ") - " + genre + " - Rating: " + rating;
     }

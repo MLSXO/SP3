@@ -1,59 +1,47 @@
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class SeriesReader {
-    private List<Series> seriesList = new ArrayList<>();
+    private List<Series> allSeries = new ArrayList<>();
 
-    public void loadSeries(String filename) {
-        seriesList.clear();
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            boolean firstLine = true; // spring header over
-            while ((line = br.readLine()) != null) {
-                if (firstLine) { firstLine = false; continue; } // skip header
+    public void loadSeries(String fileName) {
+        File file = new File(fileName);
 
-                line = line.trim();
+        try (Scanner scanner = new Scanner(file)) {
+            if (scanner.hasNextLine()) {
+                scanner.nextLine(); // spring header-linje over
+            }
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+
                 if (line.isEmpty()) continue;
 
-                // Split på kommaer, men ignorer kommaer indenfor citationstegn
-                String[] parts = parseCSVLine(line);
-                if (parts.length >= 4) {
-                    String title = parts[0];
-                    int year = Integer.parseInt(parts[1]);
-                    String genre = parts[2];
-                    double rating = Double.parseDouble(parts[3]);
-                    seriesList.add(new Series(title, year, genre, rating));
-                }
+                // Brug regex split ligesom før for at håndtere kommaer i citationstegn
+                String[] parts = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (parts.length < 4) continue;
+
+                String title = parts[0].trim();
+                int year = Integer.parseInt(parts[1].trim());
+                String genre = parts[2].replace("\"", "").trim();
+                double rating = Double.parseDouble(parts[3].trim());
+
+                Series s = new Series(title, year, genre, rating);
+                allSeries.add(s);
             }
+
+            System.out.println("Loaded " + allSeries.size() + " series from " + fileName);
         } catch (IOException e) {
-            System.out.println("Fejl ved læsning af series: " + e.getMessage());
+            System.out.println("Fejl ved indlæsning af seriedata: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Fejl i filformat: " + e.getMessage());
+            System.out.println("Fejl ved parsing af tal i seriedata: " + e.getMessage());
         }
     }
 
     public List<Series> getAllSeries() {
-        return seriesList;
-    }
-
-    // Simpel CSV-parser, håndterer citationstegn
-    private String[] parseCSVLine(String line) {
-        List<String> result = new ArrayList<>();
-        boolean inQuotes = false;
-        StringBuilder sb = new StringBuilder();
-
-        for (char c : line.toCharArray()) {
-            if (c == '"') {
-                inQuotes = !inQuotes; // skift status
-            } else if (c == ',' && !inQuotes) {
-                result.add(sb.toString().trim());
-                sb.setLength(0);
-            } else {
-                sb.append(c);
-            }
-        }
-        result.add(sb.toString().trim());
-        return result.toArray(new String[0]);
+        return allSeries;
     }
 }

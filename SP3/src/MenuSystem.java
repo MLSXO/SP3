@@ -29,27 +29,61 @@ public class MenuSystem {
                     break;
                 }
                 case "2": {
-                    // printer alle series ud
-                    List<Series> seriesListe = SeriesData.hentSerieListe();
-                    System.out.println("\nSerie Bibliotek:");
+                    // Henter serier fra SeriesData.csv via SeriesReader
+                    SeriesReader seriesReader = new SeriesReader();
+                    seriesReader.loadSeries("SeriesData.csv"); // sørg for at filen ligger korrekt
+                    List<Series> seriesListe = seriesReader.getAllSeries();
+
+                    System.out.println("\n=== Serie Bibliotek ===");
                     int i = 1;
                     for (Series s : seriesListe) {
-                        System.out.print(i + " ");
+                        System.out.print(i + ") ");
                         System.out.println(s.getInfo());
                         i++;
                     }
-                    option = false;
                     break;
-
                 }
                 case "4": {
                     List<Movie> favs = currentUser.getFavoriteMovies();
 
                     if (favs.isEmpty()) {
                         System.out.println("Du har ingen favoritfilm endnu.");
-                    } else {
-                        MovieOption(favs, currentUser, false); // her kan man ikke tilade at gemme, da allowSave er falsk
+                        break;
                     }
+
+                    System.out.println("\n=== Dine Favoritfilm ===");
+                    int i = 1;
+                    for (Movie m : favs) {
+                        System.out.println(i + ") " + m.getTitle() + " (" + m.getDate() + ")");
+                        i++;
+                    }
+                    System.out.println("Type number to see the movie, or Type number + R to remove the movie from favorite list. 0 for going back:");
+                    System.out.print("Choose: ");
+
+                    String input = scanner.nextLine().trim();
+
+                    if (input.equals("0")) break;
+
+                    try {
+                        boolean remove = input.toLowerCase().endsWith("r"); // tjek om input slutter med 'm'
+                        int removeMovie = Integer.parseInt(remove ? input.substring(0, input.length() - 1) : input) - 1;
+
+                        if (removeMovie >= 0 && removeMovie < favs.size()) {
+                            Movie selected = favs.get(removeMovie);
+
+                            if (remove) {
+                                User.removeFavoriteMovie(currentUser, selected);
+                            } else {
+                                // brug MovieOption til at vise info og evt. play
+                                MenuSystem.MovieOptionFromFavorites(selected, currentUser);
+                            }
+                        } else {
+                            System.out.println("Ugyldigt valg.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Indtast et gyldigt tal.");
+                    }
+
                     break;
                 }
 
@@ -96,8 +130,8 @@ public class MenuSystem {
                 System.out.println(movie.getInfo());
                 System.out.println(movie.getTitle() + " is playing now...");
 
-                // 👇 kun tilbyd at gemme hvis vi er i almindelig "Movies"-visning
-                if (allowSave) {
+
+                if (allowSave) { //Hvis metoden bliver kald med en sand aloowSave, vil den spørge om man vil adde den til favorites.
                     System.out.println("\nVil du gemme denne som favorit? (Y/N)");
                     String saveChoice = scanner.nextLine();
                     if (saveChoice.equalsIgnoreCase("Y")) {
@@ -110,31 +144,55 @@ public class MenuSystem {
                 System.out.println("Indtast venligst et tal.");
             }
         }
-
     }
 
-    public static void saveMoviesToFavorites(User user, Movie movie) {
-
+    public static void MovieOptionFromFavorites(Movie movie, User currentUser) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n=== Wanna save this to favorite movies? ===");
-        System.out.println("Y/N?");
-        System.out.print("Vælg: ");
+        System.out.println("\n=== Movie Details ===");
+        System.out.println(movie.getInfo());
+        System.out.println(movie.getTitle() + " is playing now...");
 
-        String input = scanner.nextLine();
-        switch (input) {
-            case ("Y"): {
-                User.saveFavoriteMovie(user, movie);
-                System.out.print(movie.getTitle() + " is saved to your favorite movies");
+
+        System.out.println("Press Enter to go back to menu..");
+        scanner.nextLine();
+    }
+    public static void SeriesOption(List<Series> series, User currentUser, boolean allowSave) {
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n=== Film Liste ===");
+            int i = 1;
+            for (Series m : series) {
+                System.out.println(i + ") " + m.getInfo());
+                i++;
+            }
+            System.out.println("0) Tilbage");
+            System.out.print("Vælg: ");
+
+            String input = scanner.nextLine();
+
+            if (input.equals("0")) {
+                running = false;
                 break;
             }
 
-            case ("N"): {
-                System.out.println("Fair nok");
+            try {
+                int choice = Integer.parseInt(input) - 1;
+                if (choice < 0 || choice >= series.size()) {
+                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    continue;
+                }
 
-                break;
+                Series serie = series.get(choice);
+                System.out.println("\n=== Movie Details ===");
+                System.out.println(serie.getInfo());
+                System.out.println(serie.getTitle() + " is playing now...");
+
+            } catch (NumberFormatException e) {
+                System.out.println("Indtast venligst et tal.");
             }
-
         }
     }
 }
