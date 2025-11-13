@@ -1,28 +1,23 @@
-import java.util.ArrayList;
+public class Series {
+    private String title;
+    private int year;
+    private String genre;
+    private double rating;
 
-public class Series extends Media {
-    private ArrayList<Season> seasons;
-
-    public Series(String title, int date, String category, double rating) {
-        super(title, date, category, rating);
-        this.seasons = new ArrayList<>();
+    public Series(String title, int year, String genre, double rating) {
+        this.title = title;
+        this.year = year;
+        this.genre = genre;
+        this.rating = rating;
     }
 
-    public void addSeason(Season season) {
-        seasons.add(season);
-    }
+    public String getTitle() { return title; }
+    public int getYear() { return year; }
+    public String getGenre() { return genre; }
+    public double getRating() { return rating; }
 
-    public ArrayList<Season> getSeasons() {
-        return seasons;
-    }
-
-    public int getNumberOfSeasons() {
-        return seasons.size();
-    }
-
-    @Override
+    // Denne metode skal være til stede
     public String getInfo() {
-        return "Serie: " + getTitle() + " (" + getDate() + ") - " + getCategory() +
-                " | Rating: " + getRating() + " | Sæsoner: " + getNumberOfSeasons();
+        return title + " (" + year + ") - " + genre + " - Rating: " + rating;
     }
 }
