@@ -17,7 +17,7 @@ public class Login {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> { // bruger -> istedet for :. Da den enlig har en usynlig break, så man ikke behøver at skrive break.  De nyeste versioner efter jave 12+ kan bruge dem.
+                case "1" -> { // bruger -> istedet for :. Da den enlig har en usynlig break, så man ikke behøver at skrive break. De nyeste versioner efter jave 12+ kan bruge dem.
                     User loggedIn = User.login(users, scanner);
                     if (loggedIn != null) {
                         return loggedIn;

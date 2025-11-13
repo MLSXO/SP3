@@ -17,7 +17,7 @@ public class MovieReader {
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty()) continue;
 
-                // Split på komma, men håndter at der kan være mellemrum efter komma
+
                 String[] parts = line.split(",\\s*");
 
                 if (parts.length < 4) {
@@ -34,7 +34,6 @@ public class MovieReader {
                     continue;
                 }
 
-                // Håndter genres der er separeret med semikolon
                 String[] genreArray = parts[2].split(";");
                 List<String> genres = new ArrayList<>();
                 for (String g : genreArray) {
@@ -64,7 +63,7 @@ public class MovieReader {
         return movieList;
     }
 
-    // Hent film ud fra nummer (indeks i listen)
+    // Hent film ud fra nummer
     public Movie getMovie(int number) {
         if (number >= 0 && number < movieList.size()) {
             return movieList.get(number);
@@ -103,7 +102,7 @@ public class MovieReader {
         return results;
     }
 
-    // Hent alle unikke genrer
+    // Hent alle genrer
     public List<String> getAllGenres() {
         List<String> allGenres = new ArrayList<>();
 
@@ -119,7 +118,7 @@ public class MovieReader {
         return allGenres;
     }
 
-    // Legacy metode for compatibility
+
     public Movie loadFavorites(int favorite) {
         return getMovie(favorite);
     }

@@ -1,3 +1,7 @@
+
+// Det her er et af vores første forsøg, på hvordan movies skulle fungere
+
+
 /*import java.io.*;
 import java.util.ArrayList;
 

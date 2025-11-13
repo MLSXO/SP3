@@ -33,7 +33,7 @@ public class User {
 
 
         if (!file.exists()) {
-            System.out.println("Ingen brugerfil fundet. Starter med tom liste.");
+            System.out.println("No usersfile found. Starting with empty list.");
             return users;
         }
 
@@ -52,7 +52,7 @@ public class User {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Fejl ved indlæsning af brugere: " + e.getMessage());
+            System.out.println("Could not load users: " + e.getMessage());
         }
 
         return users;
@@ -64,12 +64,12 @@ public class User {
                 pw.println(u.getUsername() + ";" + u.getPassword());
             }
         } catch (IOException e) {
-            System.out.println("Fejl ved oprettelse af brugere: " + e.getMessage());
+            System.out.println("Error in user registration: " + e.getMessage());
         }
     }
 
     public static User login(List<User> users, Scanner scanner) {
-        System.out.print("Brugernavn: ");
+        System.out.print("Username: ");
         String username = scanner.nextLine();
 
         System.out.print("Password: ");
@@ -78,32 +78,32 @@ public class User {
         for (User u : users) {
             if (u.getUsername().equalsIgnoreCase(username)
                     && u.getPassword().equals(password)) {
-                System.out.println("Logget ind som: " + username + ". Velkommen tilbage");
+                System.out.println("Logged in as: " + username + ". Welcome back");
                 return u;
             }
         }
 
-        System.out.println("Forkert brugernavn eller password.");
+        System.out.println("Wrong username or password.");
         return null;
     }
 
     public static void createUser(List<User> users, Scanner scanner) {
-        System.out.print("Vælg brugernavn: ");
+        System.out.print("Choose username: ");
         String username = scanner.nextLine();
 
         for (User u : users) {
             if (u.getUsername().equalsIgnoreCase(username)) {
-                System.out.println("Brugernavnet findes allerede.");
+                System.out.println("Username already in use.");
                 return;
             }
         }
 
-        System.out.print("Vælg password: ");
+        System.out.print("Choose password: ");
         String password = scanner.nextLine();
 
         users.add(new User(username, password));
         saveUsers(users);
-        System.out.println("Bruger oprettet!");
+        System.out.println("New user registred!");
 
     }
 
@@ -181,7 +181,7 @@ public class User {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Fejl: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
         return favs;
     }

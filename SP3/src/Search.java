@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Search {
 
     public static void searchMovieByTitle(User currentUser, Scanner scanner) {
-        System.out.print("Indtast filmtitel (eller del af titel): ");
+        System.out.print("Enter Movie title ");
         String searchTerm = scanner.nextLine().trim();
         if (searchTerm.isEmpty()) {
-            System.out.println("Søgeterm kan ikke være tom.");
+            System.out.println(".");
             return;
         }
 
@@ -24,9 +24,9 @@ public class Search {
         }
 
         if (results.isEmpty()) {
-            System.out.println("Ingen film fundet med titlen: " + searchTerm);
+            System.out.println("No movie found with this title " + searchTerm);
         } else {
-            System.out.println("\nFandt " + results.size() + " film:");
+            System.out.println("\nFound " + results.size() + " Movie:");
             MenuSystem.MovieOption(results, currentUser, true);
         }
     }
@@ -43,12 +43,12 @@ public class Search {
             }
         }
 
-        System.out.println("\nTilgængelige kategorier:");
+        System.out.println("\nAvailable categories:");
         for (int i = 0; i < genres.size(); i++) {
             System.out.println((i + 1) + ") " + genres.get(i));
         }
 
-        System.out.print("Vælg kategori nummer eller skriv navn: ");
+        System.out.print("Select category number or write name: ");
         String input = scanner.nextLine().trim();
 
         String selectedGenre = null;
@@ -62,7 +62,7 @@ public class Search {
         }
 
         if (selectedGenre == null) {
-            System.out.println("Ingen kategori fundet: " + input);
+            System.out.println("No category found: " + input);
             return;
         }
 
@@ -74,9 +74,9 @@ public class Search {
         }
 
         if (results.isEmpty()) {
-            System.out.println("Ingen film fundet i kategorien: " + selectedGenre);
+            System.out.println("No movies found in category: " + selectedGenre);
         } else {
-            System.out.println("\nFilm i kategorien '" + selectedGenre + "':");
+            System.out.println("\nMovies in category'" + selectedGenre + "':");
             MenuSystem.MovieOption(results, currentUser, true);
         }
     }

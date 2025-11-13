@@ -11,10 +11,10 @@ public class MenuSystem {
             System.out.println("\n=== Menu ===");
             System.out.println("1) Movies");
             System.out.println("2) Series");
-            System.out.println("3) Søg efter film");
+            System.out.println("3) Search for Movie");
             System.out.println("4) Favorites");
-            System.out.println("0) Afslut");
-            System.out.print("Vælg: ");
+            System.out.println("0) Exit");
+            System.out.print("Choose: ");
 
             String choice = scanner.nextLine();
 
@@ -40,40 +40,40 @@ public class MenuSystem {
                 case "4": {
                     List<Movie> favs = currentUser.getFavoriteMovies();
                     if (favs.isEmpty()) {
-                        System.out.println("Du har ingen favoritfilm endnu.");
+                        System.out.println("You don't have any favorite movies.");
                         break;
                     }
-                    System.out.println("\n=== Dine Favoritfilm ===");
+                    System.out.println("\n=== Your FavoriteMovies ===");
                     int i = 1;
                     for (Movie m : favs) {
                         System.out.println(i + ") " + m.getTitle() + " (" + m.getDate() + ")");
                         i++;
                     }
-                    System.out.println("Tryk Enter for at gå tilbage.");
+                    System.out.println("Press Enter to go back.");
                     scanner.nextLine();
                     break;
                 }
                 case "0":
-                    System.out.println("Farvel!");
+                    System.out.println("Goodbye!");
                     System.exit(0);
                 default:
-                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }
 
-    // ---------------------- SERIES ----------------------
+
     public static void SeriesOption(List<Series> seriesList) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Serie Bibliotek ===");
+            System.out.println("\n=== Series Library ===");
             for (int i = 0; i < seriesList.size(); i++) {
                 System.out.println((i + 1) + ") " + seriesList.get(i).getInfo());
             }
-            System.out.println("0) Tilbage");
-            System.out.print("Vælg en serie: ");
+            System.out.println("0) Return");
+            System.out.print("Pick a series: ");
 
             String input = scanner.nextLine();
             if (input.equals("0")) break;
@@ -81,63 +81,63 @@ public class MenuSystem {
             try {
                 int seriesChoice = Integer.parseInt(input) - 1;
                 if (seriesChoice < 0 || seriesChoice >= seriesList.size()) {
-                    System.out.println("Ugyldigt valg.");
+                    System.out.println("Invalid choice.");
                     continue;
                 }
 
                 Series selectedSeries = seriesList.get(seriesChoice);
                 List<Season> seasons = selectedSeries.getSeasons();
                 if (seasons.isEmpty()) {
-                    System.out.println("Ingen sæsoner tilgængelige.");
+                    System.out.println("No seasons available.");
                     continue;
                 }
 
-                System.out.println("\nVælg sæson:");
+                System.out.println("\nSelect season:");
                 for (int j = 0; j < seasons.size(); j++) {
                     System.out.println((j + 1) + ") " + seasons.get(j));
                 }
-                System.out.print("Sæson: ");
+                System.out.print("Season: ");
                 int seasonChoice = Integer.parseInt(scanner.nextLine()) - 1;
                 if (seasonChoice < 0 || seasonChoice >= seasons.size()) {
-                    System.out.println("Ugyldigt valg af sæson.");
+                    System.out.println("Invalid season selection.");
                     continue;
                 }
                 Season selectedSeason = seasons.get(seasonChoice);
 
-                System.out.println("Vælg episode:");
+                System.out.println("Choose episode:");
                 for (int ep = 1; ep <= selectedSeason.getEpisodes(); ep++) {
                     System.out.println(ep + ") Episode " + ep);
                 }
                 System.out.print("Episode: ");
                 int episodeChoice = Integer.parseInt(scanner.nextLine());
                 if (episodeChoice < 1 || episodeChoice > selectedSeason.getEpisodes()) {
-                    System.out.println("Ugyldigt valg af episode.");
+                    System.out.println("Invalid season selection.");
                     continue;
                 }
 
-                System.out.println("Nu spiller: " + selectedSeries.getTitle() +
-                        " - Sæson " + selectedSeason.getNumber() + ", Episode " + episodeChoice);
-                System.out.println("Tryk Enter for at gå tilbage.");
+                System.out.println("Now playing: " + selectedSeries.getTitle() +
+                        " - Season " + selectedSeason.getNumber() + ", Episode " + episodeChoice);
+                System.out.println("Press Enter to go back.");
                 scanner.nextLine();
 
             } catch (NumberFormatException e) {
-                System.out.println("Indtast venligst et tal.");
+                System.out.println("Please enter a number.");
             }
         }
     }
 
-    // ---------------------- MOVIES ----------------------
+
     public static void MovieOption(List<Movie> movies, User currentUser, boolean allowSave) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Film Liste ===");
+            System.out.println("\n=== Movie List ===");
             for (int i = 0; i < movies.size(); i++) {
                 System.out.println((i + 1) + ") " + movies.get(i).getInfo());
             }
-            System.out.println("0) Tilbage");
-            System.out.print("Vælg: ");
+            System.out.println("0) Return");
+            System.out.print("Choose: ");
 
             String input = scanner.nextLine();
             if (input.equals("0")) {
@@ -148,7 +148,7 @@ public class MenuSystem {
             try {
                 int choice = Integer.parseInt(input) - 1;
                 if (choice < 0 || choice >= movies.size()) {
-                    System.out.println("Ugyldigt valg.");
+                    System.out.println("Invalid choice");
                     continue;
                 }
 
@@ -158,30 +158,30 @@ public class MenuSystem {
                 System.out.println(movie.getTitle() + " is playing now...");
 
                 if (allowSave) {
-                    System.out.println("\nVil du gemme denne som favorit? (Y/N)");
+                    System.out.println("\nDo you want to save this as a favorite? (Y/N)");
                     String saveChoice = scanner.nextLine();
                     if (saveChoice.equalsIgnoreCase("Y")) {
                         User.saveFavoriteMovie(currentUser, movie);
-                        System.out.println(movie.getTitle() + " er gemt som favorit.");
+                        System.out.println(movie.getTitle() + " is saved as a favorite.");
                     }
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Indtast venligst et tal.");
+                System.out.println("Please enter a number.");
             }
         }
     }
 
-    // ---------------------- SEARCH ----------------------
+
     public static void showSearchMenu(User currentUser, Scanner scanner) {
         boolean searchRunning = true;
 
         while (searchRunning) {
-            System.out.println("\n=== Søg efter film ===");
-            System.out.println("1) Søg efter titel");
-            System.out.println("2) Søg efter kategori");
-            System.out.println("0) Tilbage til hovedmenu");
-            System.out.print("Vælg: ");
+            System.out.println("\n=== Search for movies ===");
+            System.out.println("1) Search for title");
+            System.out.println("2) Search for category");
+            System.out.println("0) Return to main menu");
+            System.out.print("Choose: ");
 
             String choice = scanner.nextLine();
 
@@ -196,7 +196,7 @@ public class MenuSystem {
                     searchRunning = false;
                     break;
                 default:
-                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }

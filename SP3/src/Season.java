@@ -28,6 +28,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "Sæson " + number + " (" + episodes + " episoder)";
+        return "Season " + number + " (" + episodes + " Episodes)";
     }
 }

@@ -4,7 +4,7 @@ public class Movie extends Media {
     private List<String> genres;
 
     public Movie(String title, int date, List<String> genres, double rating) {
-        super(title, date, String.join(", ", genres), rating); // gem genre som kategori
+        super(title, date, String.join(", ", genres), rating);
         this.genres = genres;
     }
 
