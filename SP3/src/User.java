@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,7 +41,8 @@ public class User {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue; //Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
+                if (line.isEmpty())
+                    continue; //Man bruger "trim", til at fjerne alle mellemrum eller usynlige mellemrum, ved usertext, når vi prøver at scanne den.
 
                 String[] parts = line.split(";");
                 if (parts.length >= 2) {
@@ -105,9 +107,11 @@ public class User {
 
     }
 
-    public static void saveFavoriteMovie(User currentUser, String movieTitle) {
+    public static void saveFavoriteMovie(User currentUser, Movie movie) {
         File file = new File(FILE_NAME);
         List<String> updatedLines = new ArrayList<>();
+
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -115,7 +119,7 @@ public class User {
                 String[] parts = line.split(";");
                 if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
                     // Tilføj film til brugerens linje
-                    line += ";" + movieTitle;
+                    line += ";" + movie.toString();
                 }
                 updatedLines.add(line);
             }
@@ -130,11 +134,11 @@ public class User {
             System.out.println("Fejl ved skrivning: " + e.getMessage());
         }
 
-        System.out.println(movieTitle + " er gemt som favorit for " + currentUser.getUsername());
+        System.out.println(movie.toString() + " er gemt som favorit for " + currentUser.getUsername());
     }
 
-    public List<String> getFavoriteMovies() {
-        List<String> favs = new ArrayList<>();
+    public List<Movie> getFavoriteMovies() {
+        List<Movie> favs = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(FILE_NAME))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
@@ -142,8 +146,18 @@ public class User {
 
                 String[] parts = line.split(";");
                 if (parts[0].equalsIgnoreCase(this.username)) {
-                    for (int i = 2; i < parts.length; i++) { //i er blevet instanseret til 2, da idex 0 indeholder brugernavn og 1 med adgagnskode
-                        favs.add(parts[i]);
+                    for (int i = 2; i < parts.length; i++) {
+                        if (!parts[i].contains(",")) continue; // spring ugyldige entries over
+
+                        String[] movieParts = parts[i].split(",");
+                        if (movieParts.length < 4) continue; // tjek for korrekt format
+
+                        String title = movieParts[0];
+                        int date = Integer.parseInt(movieParts[1]);
+                        double rating = Double.parseDouble(movieParts[2]);
+                        List<String> genres = Arrays.asList(movieParts[3].split("-"));
+
+                        favs.add(new Movie(title, date, genres, rating));
                     }
                     break;
                 }
