@@ -17,4 +17,10 @@ public abstract class Media {
     public double getRating() { return rating; }
 
     public abstract String getInfo();
+
+    @Override
+    public String toString() {
+        String genreString = String.join("-", category);
+        return title + "," + date + "," + rating + "," + genreString;
+    }
 }

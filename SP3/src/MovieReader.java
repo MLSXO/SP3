@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MovieReader {
 
     private List<Movie> movieList = new ArrayList<>();
+    private int id;
 
     // Load movies fra fil og gem i feltet movieList
     public void loadMovies(String filePath) {
@@ -26,6 +27,7 @@ public class MovieReader {
                 double rating = Double.parseDouble(parts[3]);
 
                 movieList.add(new Movie(title, year, genres, rating));
+
             }
 
         } catch (FileNotFoundException e) {
@@ -41,6 +43,11 @@ public class MovieReader {
 
     public Movie getMovie(int number) { //Her henter den, den film du vælger, når den spørg dig hvilken film du gerne vil se
         return movieList.get(number);
+    }
+
+    public Movie loadFavorites(int favorite) {
+        return movieList.get(favorite);
+
     }
 
 }
