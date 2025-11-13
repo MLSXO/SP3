@@ -39,18 +39,45 @@ public class MenuSystem {
                 }
                 case "4": {
                     List<Movie> favs = currentUser.getFavoriteMovies();
+
                     if (favs.isEmpty()) {
-                        System.out.println("You don't have any favorite movies.");
+                        System.out.println("You do not have any favorite movies.");
                         break;
                     }
-                    System.out.println("\n=== Your FavoriteMovies ===");
+
+                    System.out.println("\n=== Favorite Movies ===");
                     int i = 1;
                     for (Movie m : favs) {
                         System.out.println(i + ") " + m.getTitle() + " (" + m.getDate() + ")");
                         i++;
                     }
-                    System.out.println("Press Enter to go back.");
-                    scanner.nextLine();
+                    System.out.println("Type number to see the movie, or Type number + R to remove the movie from favorite list. 0 for going back:");
+                    System.out.print("Choose: ");
+
+                    String input = scanner.nextLine().trim();
+
+                    if (input.equals("0")) break;
+
+                    try {
+                        boolean remove = input.toLowerCase().endsWith("r"); // tjek om input slutter med 'm'
+                        int removeMovie = Integer.parseInt(remove ? input.substring(0, input.length() - 1) : input) - 1;
+
+                        if (removeMovie >= 0 && removeMovie < favs.size()) {
+                            Movie selected = favs.get(removeMovie);
+
+                            if (remove) {
+                                User.removeFavoriteMovie(currentUser, selected);
+                            } else {
+                                // brug MovieOption til at vise info og evt. play
+                                MenuSystem.MovieOptionFromFavorites(selected, currentUser);
+                            }
+                        } else {
+                            System.out.println("Ugyldigt valg.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Indtast et gyldigt tal.");
+                    }
+
                     break;
                 }
                 case "0":
@@ -198,6 +225,18 @@ public class MenuSystem {
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
+
         }
+    }
+    public static void MovieOptionFromFavorites(Movie movie, User currentUser) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n=== Movie Details ===");
+        System.out.println(movie.getInfo());
+        System.out.println(movie.getTitle() + " is playing now...");
+
+
+        System.out.println("Press Enter to go back to menu..");
+        scanner.nextLine();
     }
 }

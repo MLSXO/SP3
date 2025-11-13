@@ -20,7 +20,7 @@ public abstract class Media {
 
     @Override
     public String toString() {
-        String genreString = String.join(",", category);
+        String genreString = String.join("-", category);
         return title + "," + date + "," + rating + "," + genreString;
     }
 }
