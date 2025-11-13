@@ -143,8 +143,8 @@ public class MenuSystem {
                 System.out.println("Indtast venligst et tal.");
             }
         }
-
     }
+
     public static void MovieOptionFromFavorites(Movie movie, User currentUser) {
         Scanner scanner = new Scanner(System.in);
 
