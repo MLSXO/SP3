@@ -110,31 +110,49 @@ public class User {
     public static void saveFavoriteMovie(User currentUser, Movie movie) {
         File file = new File(FILE_NAME);
         List<String> updatedLines = new ArrayList<>();
+        boolean alreadyFavorite = false;
 
-
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 String[] parts = line.split(";");
+
                 if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
-                    // Tilføj film til brugerens linje
-                    line += ";" + movie.toString();
+                    // Check if movie is already in favorites
+                    for (int i = 2; i < parts.length; i++) {
+                        if (parts[i].equals(movie.toString())) {
+                            alreadyFavorite = true;
+                            break;
+                        }
+                    }
+
+                    if (!alreadyFavorite) {
+                        line += ";" + movie.toString(); // add movie only if not already there
+                    }
                 }
+
                 updatedLines.add(line);
             }
-        } catch (IOException e) {
-            System.out.println("Fejl ved læsning: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: file not found - " + e.getMessage());
+            return;
         }
+
+        // Write back updated lines
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             for (String updatedLine : updatedLines) {
                 pw.println(updatedLine);
             }
         } catch (IOException e) {
-            System.out.println("Fejl ved skrivning: " + e.getMessage());
+            System.out.println("Error writing to file: " + e.getMessage());
+            return;
         }
 
-        System.out.println(movie.toString() + " er gemt som favorit for " + currentUser.getUsername());
+        if (alreadyFavorite) {
+            System.out.println(movie.getTitle() + " is already in favorites for " + currentUser.getUsername() + ".");
+        } else {
+            System.out.println(movie.getTitle() + " has been saved as a favorite for " + currentUser.getUsername() + ".");
+        }
     }
 
     public List<Movie> getFavoriteMovies() {
@@ -166,6 +184,54 @@ public class User {
             System.out.println("Fejl: " + e.getMessage());
         }
         return favs;
+    }
+    public static void removeFavoriteMovie(User currentUser, Movie movieToRemove) {
+        File file = new File(FILE_NAME);
+        List<String> updatedLines = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(";");
+
+                if (parts.length >= 2 && parts[0].equalsIgnoreCase(currentUser.getUsername())) {
+                    // Rebuild the line without the selected movie
+                    StringBuilder newLine = new StringBuilder(parts[0] + ";" + parts[1]);
+
+                    for (int i = 2; i < parts.length; i++) {
+                        String[] movieParts = parts[i].split(",");
+                        if (movieParts.length >= 2) {
+                            String title = movieParts[0].trim();
+                            int year = Integer.parseInt(movieParts[1].trim());
+
+                            // Only keep movies that are NOT the one to remove
+                            if (!(title.equalsIgnoreCase(movieToRemove.getTitle()) && year == movieToRemove.getDate())) {
+                                newLine.append(";").append(parts[i]);
+                            }
+                        }
+                    }
+
+                    updatedLines.add(newLine.toString());
+                } else {
+                    updatedLines.add(line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+            return;
+        }
+
+        // Write changes back to the file
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
+            for (String updatedLine : updatedLines) {
+                pw.println(updatedLine);
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+            return;
+        }
+
+        System.out.println(movieToRemove.getTitle() + " has been removed from your favorites.");
     }
 }
 
