@@ -1,15 +1,15 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuSystem {
 
-    public static void option() {
-        boolean option = true;
+    public static void option(User user) {
+        boolean optionActive = true;
         Scanner scanner = new Scanner(System.in);
-        while (option) {
+
+        System.out.println("Hej " + user.getUsername() + ", velkommen til menuen!");
+
+        while (optionActive) {
             System.out.println("\n=== Menu ===");
             System.out.println("1) Movies");
             System.out.println("2) Series");
@@ -19,9 +19,9 @@ public class MenuSystem {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1": {
-                    MovieReader reader = new MovieReader();       // opretter reader-objekt
-                    reader.loadMovies("MovieData.csv");           // loader movies til reader
-                    List<Movie> movies = reader.getAllMovies();   // henter listen fra reader
+                    MovieReader reader = new MovieReader();
+                    reader.loadMovies("MovieData.csv");
+                    List<Movie> movies = reader.getAllMovies();
 
                     System.out.println("Film Bibliotek:");
                     int i = 1;
@@ -31,72 +31,74 @@ public class MenuSystem {
                         i++;
                     }
 
-                    MovieOption(reader); //kalder på MovieOption
-
-                    option = false;
+                    MovieOption(reader, user);
                     break;
                 }
                 case "2": {
-                    // printer alle series ud
-                    List<Series> seriesListe = SeriesData.hentSerieListe();
-                    System.out.println("\nSerie Bibliotek:");
+                    SeriesReader seriesReader = new SeriesReader();
+                    seriesReader.loadSeries("SeriesData.csv");
+                    List<Series> seriesList = seriesReader.getAllSeries();
+
+                    System.out.println("Serie Bibliotek:");
                     int i = 1;
-                    for (Series s : seriesListe) {
+                    for (Series s : seriesList) {
                         System.out.print(i + " ");
                         System.out.println(s.getInfo());
                         i++;
                     }
-                    option = false;
+
+                    SeriesOption(seriesReader, user);
                     break;
-
                 }
-                case "0": {
-                    System.out.println("Farvel!");
-                    System.exit(0);
-
-                }
+                case "0":
+                    optionActive = false;
+                    System.out.println("Program afsluttes. Farvel!");
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg! Prøv igen.");
             }
         }
     }
 
-    public static void MovieOption(MovieReader reader) {
+    public static void MovieOption(MovieReader reader, User user) {
         Scanner scanner = new Scanner(System.in);
-        boolean MovieOption = true;
-        while (MovieOption){
-            System.out.println("\n=== Movie Option ===");
-            System.out.println("type the number from the list you wonna see?");
-            System.out.print("Vælg: ");
-
-            String input = scanner.nextLine();
-
-            int movieNumber = Integer.parseInt(input) - 1; //-1 fordi index starter med 0
-            Movie movie = reader.getMovie(movieNumber);
-            System.out.println("\n=== Movie Details ===");
-            System.out.println(movie.getInfo());
-            System.out.println(movie.getTitle() + " is playing now...");
-            System.exit(0);
-
-        }
-    }
-    public static void saveMovies(){
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("\n=== Wanna save this to favorite movies? ===");
-        System.out.println("Y/N?");
-        System.out.print("Vælg: ");
-
+        System.out.print("Vælg nummer på favoritfilm: ");
         String input = scanner.nextLine();
-        int movieNumber = Integer.parseInt(input) - 1; //-1 fordi index starter med 0
 
-        try (PrintWriter pw = new PrintWriter(new FileWriter(User.FILE_NAME))) {
-            for (Movie u : movies) {
-                pw.println(u.getUsername() + ";" + u.getPassword() + ";" +
+        try {
+            int index = Integer.parseInt(input) - 1;
+            List<Movie> movies = reader.getAllMovies();
+            if (index >= 0 && index < movies.size()) {
+                Movie selected = movies.get(index);
+                System.out.println("Du valgte: " + selected.getInfo());
+
+                User.saveFavoriteMovie(user, selected.getTitle());
+            } else {
+                System.out.println("Ugyldigt nummer.");
             }
-        } catch (IOException e) {
-            System.out.println("Fejl ved oprettelse af brugere: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Indtast venligst et tal.");
         }
-
     }
 
+    public static void SeriesOption(SeriesReader reader, User user) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Vælg nummer på favoritserie: ");
+        String input = scanner.nextLine();
 
+        try {
+            int index = Integer.parseInt(input) - 1;
+            List<Series> seriesList = reader.getAllSeries();
+            if (index >= 0 && index < seriesList.size()) {
+                Series selected = seriesList.get(index);
+                System.out.println("Du valgte: " + selected.getInfo());
+
+                User.saveFavoriteMovie(user, selected.getTitle()); // gemmer også i samme users.txt
+            } else {
+                System.out.println("Ugyldigt nummer.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Indtast venligst et tal.");
+        }
+    }
 }
